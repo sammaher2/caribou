@@ -1,19 +1,13 @@
-########################################################################### 
-#Samantha Maher
-#Yale School of Forestry and Environmental Studies 2018
-#contact at sammaher2@comcast.net or maher@ecohealthalliance.org
-#DATA/DYNAMICS
-#This is the source functions and model that are called from the caribou_dynamics caribou_capn scripts
-###########################################################################
+#Does not print plots
 
+##########DATA/DYNAMICS
 
 #####Parameter values used ecological model
-do <- 144399 #area of alberta, domain of model
-iL<- 277306 #intitial # of linear features, from Gov. Alberta 2017
-rec_prop <- 0.25
-#.25 means 25% of existing linear features are actively restored
-#.5 means 50% of linear features are restored actively (the maximum of accessible lfs)
-#0 means no active restoration
+do <- 144399
+iL<- 277306
+rec_prop <- 0.25 #means 25% of total lines are restored, 
+cap<-1975
+#which is 50% 0of lines that are possible
 
 sim.parmsE <- c(
   ##caribou
@@ -46,7 +40,8 @@ sim.parmsE <- c(
   rec_prop = rec_prop, #proportion of lines needing restoration
   a = 0.0499890170141911, #coefficients for equation determining rec_time
   b = -.00000995709435516459,
-  c = -.0000000002062664077758624
+  c = -.0000000002062664077758624,
+  cap = cap
 )
 
 
@@ -123,7 +118,7 @@ investlf <-function(ls, parameters) {
 }
 
 #Decay/Restoration rate of Lfs on lanscape 
-#We are going to start by treating stealth and traditional seismic the same (Hauer 2018)
+#We are going to start by treating stealth and traditional seismic the same. Too hard otherwise, base this offof Hauer 2018
 #so it matters whats been put on in last 35 years, when they started getting reclaimed)
 #####Also arbitrary 
 restorelf <-function(xs,ls, parameters) {
@@ -165,15 +160,20 @@ ydot <- function(xs, ys, zs, ls, parameters){
 
 zdot <- function(xs, ys, zs, ls, parameters){
   with(as.list(c(parameters)),{
-    return(8760*zs*tau*((attack_C(xs, ls, parameters)*mC + mD*attack_P(ys, ls, parameters))/
-                          (1+attack_C(xs, ls, parameters)*hrC + attack_P(ys, ls, parameters)*hrP))-(zs^2)/do)
+    if(zs>cap){
+      growth <- cap-zs
+    } else {
+      growth <- 8760*zs*tau*((attack_C(xs, ls, parameters)*mC + mD*attack_P(ys, ls, parameters))/
+                                  (1+attack_C(xs, ls, parameters)*hrC + attack_P(ys, ls, parameters)*hrP))-(zs^2)/do
+    }
+      return(growth)
   })
 }
 
 ldot <- function(xs, ys, zs, ls, parameters){
   with(as.list(c(parameters)),{
     return(investlf(ls, parameters)-restorelf(xs, ls, parameters)
-    -decaylf(ls, parameters))
+           -decaylf(ls, parameters))
   })
 }
 
@@ -193,50 +193,50 @@ dxdydzdlCC <- function(t, state, parms){
 households <- 1256190.0 #Harper 2012
 con1 <- 433.868503 #to the power and numerator
 con2 <- 724.208184 # coefficient in denomenator    
-  sim.parmsW <- c(
-      ann = .04, #(annuitizing coefficient)
-      ##Value of LFs, Hauer 2010
-      wells = 0.0, #number of wells in region (Bunch of things set to zero)
-      ANPV_gas = 0.0, #annuitized NPV of oil, bitumen, natural gas total
-      ANPV_oil = 0.0,
-      ANPV_bit = 0.0,
-      sat_co = 10761, #half saturation rate for lfs
-      half_sat = 14019279, #linear feature saturation coefficent
-      do = 0.0, #how many km^2 of area the lfs cover so we can convert from density to kms
-      ##Investment in LFs
-      ##Reclamation of LFs
-      rec_cost = 12500.0, #cost to restore 1 km of lfs, 
-      a = 0.0499890170141911, #coefficients for equation determining rec_time
-      b = -.00000995709435516459,
-      c = -.0000000002062664077758624,
-      #rec_time = 1/35, #1 divided by number of years it takes to restore
-      rec_prop = rec_prop, #.5, #proportion of lines being restored overall 
-      #proportion of lfs restored in a year
-      ##Conservation Value, harper 2012
-      #only dependent on caribou as of now.
-      households = households, #Harper 2012
-      con1 = 433.868503, #to the power and numerator
-      con2 = 724.208184, # coefficient in denomenator
-      ##Wolf Control
-      wcull_ratio = 0.0, #ratio of wolves culled in relation to 40% baseline
-      wcull_cost = 35.0, #cost per km^2 to cull 40% of wolves
-      ##Prey Control
-      w_target = .4,
-      w_target_base = .4, #proprtion of wolves killed that 35$ cost is based on
-      #maybe make these proportion dependent on the number of caribou??
-      pcull_cost = 35,    #cost to cull per km^2 per year
-      dr = 1.0
-    )
-      
+sim.parmsW <- c(
+  ann = .04, #(annuitizing coefficient)
+  ##Value of LFs, Hauer 2010
+  wells = 0.0, #number of wells in region
+  ANPV_gas = 0.0, #annuitized NPV of oil, bitumen, natural gas total
+  ANPV_oil = 0.0,
+  ANPV_bit = 0.0,
+  sat_co = 10761, #half saturation rate for lfs
+  half_sat = 14019279, #linear feature saturation coefficent
+  do = 0.0, #how many km^2 of area the lfs cover so we can convert from density to kms
+  ##Investment in LFs
+  ##Reclamation of LFs
+  rec_cost = 12500.0, #cost to restore 1 km of lfs, 
+  a = 0.0499890170141911, #coefficients for equation determining rec_time
+  b = -.00000995709435516459,
+  c = -.0000000002062664077758624,
+  #rec_time = 1/35, #1 divided by number of years it takes to restore
+  rec_prop = rec_prop, #.5, #proportion of lines being restored overall 
+  #proportion of lfs restored in a year
+  ##Conservation Value, harper 2012
+  #only dependent on caribou as of now.
+  households = households, #Harper 2012
+  con1 = 433.868503, #to the power and numerator
+  con2 = 724.208184, # coefficient in denomenator
+  ##Wolf Control
+  wcull_ratio = 0.0, #ratio of wolves culled in relation to 40% baseline
+  wcull_cost = 35.0, #cost per km^2 to cull 40% of wolves
+  ##Prey Control
+  w_target = .4,
+  w_target_base = .4, #proprtion of wolves killed that 35$ cost is based on
+  #maybe make these proportion dependent on the number of caribou??
+  pcull_cost = 35,    #cost to cull per km^2 per year
+  dr = 1.0
+)
+
 #already annuitized
-  lf_value <-function(ls,parameters) {
+lf_value <-function(ls,parameters) {
   with(as.list(c(parameters)),{
     return(1000000*sat_co*ls/(half_sat+ls))
   })
-  }
+}
 
 
-######Investment in Linear Features (Set to zero)
+######Investment in Linear Features
 #This is 0 right now because we are assuming cost of seismic 
 #is in inclued in lf_value which is netted out
 lf_invest <-function(ls, parameters) {
@@ -257,7 +257,7 @@ lf_reclaim <-function(xs, ls, parameters) {
 }
 
 
-#####Conservation Value of Caribou (Harper) (Multiplied by zero)
+#####Conservation Value of Caribou (Harper)
 caribou_value <-function(xs, parameters) {
   with(as.list(c(parameters)),{
     return(0*(con1*xs/(con2+xs)*households))

@@ -7,18 +7,29 @@
 ###########################################################################
 
 #additional modeling parameters
-dr <- 0.03 #discount rate
+dr <- 0.04 #discount rate
 
-#APPROX SPACE parameters
+#APPROX SPACE parameters (should be bigger than nodes)
 order <- c(6,6,6,6) #approximaton order
-
+#ub1 <- c(20000, 2000000,10000,800000) 
+#lb1 <- c(1, 1, 1, 1)  # lower bounds
 
 #NODES
 NumNodes <- 10000  #number of nodes
 degn <- c(10,10,10,10)  #nodes for grids
+#ub <- c(do*.2, do*20, do*.0450000) 
+#lb <- c(10, 500000, 600, 50000)  # lower bounds
 
+#Experimental Bounds
+#Narrow Bounds:
+#lb <- c(50, 10000, 100, 10000)
+#ub <-  c(8500, 1350000, 300000)
 
-#Boundaries for approx space
+#Medium Bounds: 
+#lb1 <- c(5000, 8000, 10, 10)
+#ub1 <-  c(10000, 1500000, 6000, 400000)
+
+#Wide Bounds (these seem to work best): 
 lb <- c(1,1,1,1)
 ub <-  c(20000, 2000000, 10000, 800000)
 
@@ -46,8 +57,8 @@ for(j in 1:NumNodes){
 
 
 #Approximate price vector coefficients
-aproxSpace <- aproxdef(order, lb, ub, dr)
-Caproxc <- vaprox(aproxSpace,caribou_data)  
+aproxspace <- aproxdef(order, lb, ub, dr)
+Caproxc <- vaprox(aproxspace,caribou_data)  
 
 
 

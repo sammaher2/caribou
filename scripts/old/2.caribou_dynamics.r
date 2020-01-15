@@ -32,8 +32,8 @@ source(P("scripts/1.source_model.R"), local = FALSE)
 
 #Time Simulation
 tseq <- seq(0,1000,by = 1)
-start <- c(xs = 2300, ys = 10000.0, zs = 800, ls = iL) #starting values or caribou, ungulares, wolves, and linear features in that order
-oderes <- ode(y = start, times = tseq, func = dxdydzdlCC, parms = sim.parmsE)
+start2 <- c(xs = 2300, ys = 10000.0, zs = 800, ls = iL) #starting values or caribou, ungulares, wolves, and linear features in that order
+oderes <- ode(y = start2, times = tseq, func = dxdydzdlCC, parms = sim.parmsE)
 sim.out <- as.data.frame(oderes, row.names = c('time', 'xs', 'ys', 'zs', 'ls'))
 timeline <- seq(from = 1931, to = 2931, by= 1)
 sim.out <- cbind(sim.out, timeline)
@@ -41,10 +41,10 @@ sim.out <- cbind(sim.out, timeline)
 
 
 #Populations in 2017 (used to simulate current dynamics for capn)
-endC <- sim.out[87,2]
-endP <- sim.out[87,3]
-endW <- sim.out[87,4]
-endL <- sim.out[87,5]
+endC <- sim.out[79,2]
+endP <- sim.out[79,3]
+endW <- sim.out[79,4]
+endL <- sim.out[79,5]
 endC
 endP
 endW

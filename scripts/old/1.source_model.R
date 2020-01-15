@@ -1,4 +1,4 @@
-########################################################################### 
+###########################################################################
 #Samantha Maher
 #Yale School of Forestry and Environmental Studies 2018
 #contact at sammaher2@comcast.net or maher@ecohealthalliance.org
@@ -123,7 +123,7 @@ investlf <-function(ls, parameters) {
 }
 
 #Decay/Restoration rate of Lfs on lanscape 
-#We are going to start by treating stealth and traditional seismic the same (Hauer 2018)
+#We are going to start by treating stealth and traditional seismic the same. Too hard otherwise, base this offof Hauer 2018
 #so it matters whats been put on in last 35 years, when they started getting reclaimed)
 #####Also arbitrary 
 restorelf <-function(xs,ls, parameters) {
@@ -196,7 +196,7 @@ con2 <- 724.208184 # coefficient in denomenator
   sim.parmsW <- c(
       ann = .04, #(annuitizing coefficient)
       ##Value of LFs, Hauer 2010
-      wells = 0.0, #number of wells in region (Bunch of things set to zero)
+      wells = 0.0, #number of wells in region
       ANPV_gas = 0.0, #annuitized NPV of oil, bitumen, natural gas total
       ANPV_oil = 0.0,
       ANPV_bit = 0.0,
@@ -236,7 +236,7 @@ con2 <- 724.208184 # coefficient in denomenator
   }
 
 
-######Investment in Linear Features (Set to zero)
+######Investment in Linear Features
 #This is 0 right now because we are assuming cost of seismic 
 #is in inclued in lf_value which is netted out
 lf_invest <-function(ls, parameters) {
@@ -257,7 +257,7 @@ lf_reclaim <-function(xs, ls, parameters) {
 }
 
 
-#####Conservation Value of Caribou (Harper) (Multiplied by zero)
+#####Conservation Value of Caribou (Harper)
 caribou_value <-function(xs, parameters) {
   with(as.list(c(parameters)),{
     return(0*(con1*xs/(con2+xs)*households))
