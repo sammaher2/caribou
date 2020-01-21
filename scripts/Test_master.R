@@ -20,7 +20,6 @@ library(rprojroot)
 #set working directory
 P <- rprojroot::find_rstudio_root_file
 
-
 #Scenario A3: No restoration, 3% discount rate
 rec_prop <- 0.0
 source(P("scripts/1.source_model.R"), local = FALSE)
@@ -33,15 +32,18 @@ source(P("scripts/A3_norestoration_3dr.R"), local = FALSE)
 rec_prop <- 0.0
 source(P("scripts/1.source_model.R"), local = FALSE)
 source(P("scripts/2.caribou_dynamics.R"), local = FALSE)
-dr <- .08
+dr <- .04
 source(P("scripts/3.caribou_capn.R"), local = FALSE)
 source(P("scripts/A8_norestoration_8dr.R"), local = FALSE)
+
+
+
 
 #Scenario B3: 25% restoration, 3% discount rate
 rec_prop <- 0.25
 source(P("scripts/1.source_model.R"), local = FALSE)
 source(P("scripts/2.caribou_dynamics.R"), local = FALSE)
-dr <- .03
+dr <- .05
 source(P("scripts/3.caribou_capn.R"), local = FALSE)
 source(P("scripts/B3_25restoration_3dr.R"), local = FALSE)
 
@@ -49,7 +51,7 @@ source(P("scripts/B3_25restoration_3dr.R"), local = FALSE)
 rec_prop <- 0.25
 source(P("scripts/1.source_model.R"), local = FALSE)
 source(P("scripts/2.caribou_dynamics.R"), local = FALSE)
-dr <- .08
+dr <- .06
 source(P("scripts/3.caribou_capn.R"), local = FALSE)
 source(P("scripts/B8_25restoration_8dr.R"), local = FALSE)
 
@@ -57,7 +59,7 @@ source(P("scripts/B8_25restoration_8dr.R"), local = FALSE)
 rec_prop <- 0.50
 source(P("scripts/1.source_model.R"), local = FALSE)
 source(P("scripts/2.caribou_dynamics.R"), local = FALSE)
-dr <- .03
+dr <- .07
 source(P("scripts/3.caribou_capn.R"), local = FALSE)
 source(P("scripts/C3_50restoration_3dr.R"), local = FALSE)
 

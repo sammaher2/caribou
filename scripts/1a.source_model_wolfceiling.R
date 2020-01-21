@@ -5,8 +5,8 @@
 #####Parameter values used ecological model
 do <- 144399
 iL<- 277306
-rec_prop <- 0.25 #means 25% of total lines are restored, 
-cap<-1975
+rec_prop <- rec_prop #means 25% of total lines are restored, 
+cap<-cap
 #which is 50% 0of lines that are possible
 
 sim.parmsE <- c(

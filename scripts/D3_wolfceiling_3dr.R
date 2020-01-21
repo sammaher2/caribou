@@ -9,12 +9,12 @@ zero<-rep(0, 101)
 
 #SCENARIO 1 (WOLF ESCAPEMENT)
 
-cariboutw <- sim.outw[1:100,2]
-ungulatestw <- sim.outw[1:100,3]
-wolvestw <- sim.outw[1:100,4]
-lfeaturestw <-  sim.outw[1:100,5] #rep(sim.out[70,5], 101)    
+cariboutw <- sim.outw[1:101,2]
+ungulatestw <- sim.outw[1:101,3]
+wolvestw <- sim.outw[1:101,4]
+lfeaturestw <-  sim.outw[1:101,5] #rep(sim.out[70,5], 101)    
 wild_timetemp <- cbind(cariboutw, ungulatestw, wolvestw, lfeaturestw)
-csim.wild <- vsim(Caproxc,wild_timetemp)
+csim.wild <- vsim(Caproxw,wild_timetemp)
 wildsptemp <- csim.wild[[1]] 
 wildsp <- wildsptemp[,1:3]
 wild_time <- wild_timetemp[,1:3]
@@ -22,8 +22,8 @@ wild_time <- wild_timetemp[,1:3]
 #Each line gives an estimation of total change in value over next 100 years
 #this includes the linear feature value, 
 #but really that technology is getting replaced with new technologies 
-csim.wild$vfun[100]-csim.wild$vfun[1]
-sum((wild_timetemp[100,]-wild_timetemp[1,]) * (wildsptemp[100,]+wildsptemp[1,])/2)
+csim.wild$vfun[101]-csim.wild$vfun[1]
+sum((wild_timetemp[101,]-wild_timetemp[1,]) * (wildsptemp[101,]+wildsptemp[1,])/2)
 #This gives the change in value during a time period 
 deltavalue <- matrix(0, nrow = 100, ncol =5)
 for(j in 1:100){
@@ -58,4 +58,4 @@ zerostart <- matrix(0, nrow = 1, ncol =5)
 colnames(zerostart) <- c("year","wildlife","caribou","ungulates", "wolves")
 zerostart <- as.data.frame(zerostart)
 deltavalueTOTvD3 <- rbind(zerostart, deltavalueTOT)
-View(deltavalueTOTvD3)
+#View(deltavalueTOTvD3)

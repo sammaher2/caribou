@@ -11,13 +11,13 @@
 P <- rprojroot::find_rstudio_root_file
 
 #USE this one for restoration scenarios
-source(P("scripts/2.caribou_dynamics.R"), local = FALSE)  
+#source(P("scripts/2.caribou_dynamics.R"), local = FALSE)  
 
 #USE this one for wolfscenarios
 #source(P("scripts/2a.caribou_dynamics_wolfceiling.R"), local = FALSE)
 
 #additionl modeling parameters
-dr <- 0.03 #discount rate
+dr <- dr #discount rate
 
 #APPROX SPACE parameters
 order <- c(6,6,6,6) #approximaton order

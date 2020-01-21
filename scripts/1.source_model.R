@@ -10,7 +10,7 @@
 #####Parameter values used ecological model
 do <- 144399 #area of alberta, domain of model
 iL<- 277306 #intitial # of linear features, from Gov. Alberta 2017
-rec_prop <- 0.25
+rec_prop <- rec_prop
 #.25 means 25% of existing linear features are actively restored
 #.5 means 50% of linear features are restored actively (the maximum of accessible lfs)
 #0 means no active restoration

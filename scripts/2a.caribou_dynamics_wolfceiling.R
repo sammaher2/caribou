@@ -17,7 +17,7 @@ library(rprojroot)
 
 #set working directory
 P <- rprojroot::find_rstudio_root_file
-source(P("scripts/1a.source_model_wolfceiling.R"), local = FALSE)
+#source(P("scripts/1a.source_model_wolfceiling.R"), local = FALSE)
 #Time Simulation
 
 
@@ -25,7 +25,8 @@ tseqw <- seq(0,1000,by = 1)
 startw <- c(xs = 2300, ys = 1000000.0, zs = 2500, ls = iL)
 oderesw <- ode(y = startw, times = tseqw, func = dxdydzdlCC, parms = sim.parmsE)
 sim.outw <- as.data.frame(oderesw, row.names = c('time', 'xs', 'ys', 'zs', 'ls'))
-sim.outw <- cbind(sim.outw, timeline)
+timelinew <- seq(from = 1931, to = 2931, by= 1)
+sim.outw <- cbind(sim.outw, timelinew)
 #View(sim.outw)
 
 
@@ -54,16 +55,16 @@ plot(sim.outw$xs ~ sim.outw$time,
 axis(side = 2, at=c(0,2500, 5000, 7500, 10000), labels=c("0", "2,500", "5,000", "7,500", "10,000"))
 lines(sim.outw$xs~ sim.outw$time, lwd=2, lty = 1, col="blue")
 lines(sim.outw$zs ~ sim.outw$time,lwd=2, lty = 1, col="purple")
-legend("topright", legend = c("Caribou", "Wolves", "Ungulates", "Legacy Linear Features"), 
-       col = c("blue", "purple", "red", "orange"), 
+legend("topright", legend = c("Caribou", "Wolves", "Ungulates", "Legacy Linear Features"),
+       col = c("blue", "purple", "red", "orange"),
        lty = c(1,1,6,6), lwd = c(2,2,2,2), cex = 1)
 
 par(new = T)
-plot(sim.out$ys ~ sim.outw$timeline, pch=16, axes=F, 
+plot(sim.outw$ys ~ sim.outw$timeline, pch=16, axes=F,
      xlab=NA, ylab=NA, cex=1.2, col = 'white', xlim = c(1980, 2080.0),
      ylim = c(0.0, 1800000.0), xaxt = "n")
 axis(side = 4, at=c(0,500000,1000000,1500000), labels=c("0", "500,000", "1,000,000", "1,500,000"))
-lines(sim.outw$ys ~ sim.outw$timeline, lwd=2, lty = 6, col="red") 
+lines(sim.outw$ys ~ sim.outw$timeline, lwd=2, lty = 6, col="red")
 lines(sim.outw$ls ~ sim.outw$timeline, lwd = 2, lty = 6, col = "orange")
 #mtext(side = 4, line = 3, 'Ungulate Population', outer = "true")
 

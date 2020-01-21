@@ -14,9 +14,9 @@ P <- rprojroot::find_rstudio_root_file
 #source(P("scripts/2.caribou_dynamics.R"), local = FALSE)  
 
 #USE this one for wolfscenarios
-source(P("scripts/2a.caribou_dynamics_wolfceiling.R"), local = FALSE)
+#source(P("scripts/2a.caribou_dynamics_wolfceiling.R"), local = FALSE)
 #additional modeling parameters
-dr <- 0.04 #discount rate
+dr <- dr #discount rate
 
 #APPROX SPACE parameters (should be bigger than nodes)
 order <- c(6,6,6,6) #approximaton order
