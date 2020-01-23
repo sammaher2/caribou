@@ -1,3 +1,33 @@
+
+#CARIBOU GROWTH RATES
+par(mfcol = c(1,1), bty = "o", xaxs = "i", yaxs = "i")
+plot(caribou_spcA3$shadowcA3 ~ caribou_spcA3$cariboucA3,
+     xlab="Caribou",
+     ylab="Shadow Price (dollars)",
+     main = "Shadow Price of Caribou",
+     cex.main = 1.4,
+     cex.lab = 1.4,
+     cex = .05,
+     col = "white",
+     xlim = c(0, 10000.0),
+     ylim = c(-10000,250000), 
+     yaxt = "n"
+)
+axis(side = 2, at=c(0,50000, 100000, 150000), labels=c("0", "50,000", "100,000", "150,000"))
+lines(caribou_spcA3$shadowcA3 ~ caribou_spcA3$cariboucA3, lwd =2, lty = 1, col = "green") #2017 25 3%
+lines(caribou_spcA8$shadowcA8 ~ caribou_spcA8$cariboucA8, lwd =2, lty = 5, col = "green")  #2017 25 8%   3.5
+lines(caribou_spcB3$shadowcB3 ~ caribou_spcB3$cariboucB3, lwd =2, lty = 1, col = "black") #2000 25 3%
+lines(caribou_spcB8$shadowcB8 ~ caribou_spcB8$cariboucB8, lwd =2, lty = 5, col = "black") #2000 25 8%     6
+lines(caribou_spcC3$shadowcC3 ~ caribou_spcC3$cariboucC3, lwd =2, lty = 1, col = "purple") #2017 50 3  WONKY
+lines(caribou_spcC8$shadowcC8 ~ caribou_spcC8$cariboucC8, lwd =2, lty = 5, col = "purple")  #2017 50 8  WONKY    4
+legend("topright", legend = c("BAU 2000, 3% discount rate", "BAU 2000, 8% discount rate", 
+                              "BAU 2017, 3% discount rate", "BAU 2017 8% discount rate", 
+                              "Full 2017, 3% discount rate", "Full 2017 8% discount rate"), 
+       col = c("black", "black", "green", "green", "purple", "purple"), 
+       lty = c(1,5,1,5,1,5), lwd = c(2,2,2,2,2,2), cex = 1.2)
+
+
+
 #CARIBOU
 par(mfcol = c(1,1), bty = "o", xaxs = "i", yaxs = "i")
 plot(caribou_spcA3$shadowcA3 ~ caribou_spcA3$cariboucA3,
@@ -36,7 +66,7 @@ par(mfcol = c(1,1), bty = "o", xaxs = "i", yaxs = "i")
 plot(caribou_spcA3$shadowcA3 ~ caribou_spcA3$cariboucA3,
      xlab="Caribou",
      ylab="Shadow Price (dollars)",
-     main = "Shadow Price of Caribou, Full Restoration 2000",
+     main = "Shadow Price of Caribou, BAU 2000",
      cex.main = 1.4,
      cex.lab = 1.4,
      cex = .05,

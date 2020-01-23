@@ -39,12 +39,14 @@ timeline <- seq(from = 1931, to = 2931, by= 1)
 sim.out <- cbind(sim.out, timeline)
 #View(sim.out)
 
-startyr <- 70
+
+###ELI THIS IS WHERE I CHOOSE WHICH DYNAMICS TO APPLY
+startyr <- startyr
 #Populations in 2017 (used to simulate current dynamics for capn)
-endC <- sim.out[startyr,2]
-endP <- sim.out[startyr,3]
-endW <- sim.out[startyr,4]
-endL <- sim.out[startyr,5]
+endC <- sim.out[87,2]
+endP <- sim.out[87,3]
+endW <- sim.out[87,4]
+endL <- sim.out[87,5]
 endC
 endP
 endW
