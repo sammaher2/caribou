@@ -16,18 +16,28 @@ zero <- rep (0,1500000)
 
 
 ######Caribou Shadow Price
-cariboucF3 <- seq(from = 1, to = 1000, by = 1)
-ungulatescF3 <- rep(endP, 1000)
-wolvescF3 <- rep(endW, 1000)
-lfeaturescF3 <- rep(endL, 1000)
+cariboucF3 <- seq(from = 1, to = 5000, by = 10)
+ungulatescF3 <- rep(endP, 500)
+wolvescF3 <- rep(endW, 500)
+lfeaturescF3 <- rep(endL, 500)
 cF3xyzl <- cbind(cariboucF3, ungulatescF3, wolvescF3, lfeaturescF3)
 cF3xyzl <- as.data.frame(cF3xyzl, row.names = c('xs', 'ys', 'zs', 'ls'))
 #View(Cxyzl)
 ## Simulation data
-csimcF3 <- vsim(Caproxc,cF3xyzl)
+
+t_cF3xyzl<- matrix(0,nrow = length(cF3xyzl$cariboucF3), ncol = 1)
+#simulate at nodes
+for(j in 1:length(cF3xyzl$cariboucF3)){
+  t_cF3xyzl[j,1]<-wval(cF3xyzl[j,1], cF3xyzl[j,2], cF3xyzl[j,3], cF3xyzl[j,4], sim.parmsW)
+}
+
+t_cF3xyzl <- array(as.vector(t_cF3xyzl), dim = c(500,1))
+csimcF3 <- vsim(Caproxc, cF3xyzl, wval = t_cF3xyzl)
+
+
 #View(csimC)
 shadowtempcF3 <-csimcF3[[1]]
-shadowcF3 <- shadowtempcF3[1:1000,1]
+shadowcF3 <- shadowtempcF3[1:500,1]
 caribou_spcF3 <- cbind(cariboucF3, shadowcF3)
 caribou_spcF3 <- as.data.frame(caribou_spcF3)
 

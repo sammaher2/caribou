@@ -81,7 +81,7 @@ source(P("scripts/D3_wolfceiling_3dr.R"), local = FALSE)
 
 #Scenario D8: 25% restoration, wolf ceiling, 8% discount rate
 rec_prop <- 0.25
-cap <- 1660
+cap <- 1620
 source(P("scripts/1a.source_model_wolfceiling.R"), local = FALSE)
 source(P("scripts/2a.caribou_dynamics_wolfceiling.R"), local = FALSE)
 dr <- .08

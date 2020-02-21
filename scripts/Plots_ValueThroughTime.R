@@ -15,33 +15,66 @@ plot(deltavalueTOTvD3$wildlife ~ deltavalueTOTvD3$year,
      xlim = c(0,100),
      xaxs = "i",
      yaxs = "i",
-     ylim = c(-700000000, 400000000),
+     ylim = c(-1400000000,200000000),
      yaxt = "n",
      cex.axis = 1.2
 )
-axis(side = 2, at=c(400000000, 200000000, 0, -200000000, -400000000, -600000000, -800000000), 
-     cex.axis = 1.2,
-     labels=c("400", "200", "0", "-200", "-400", "-600", "-800"))
+axis(side = 2, at=c(500000000, 0, -500000000, -1000000000), 
+     cex.axis = 1.1,
+     labels=c("500", "0", "-500", "-1000"))
 zero <- rep(0,110)
-lines(zero, col = "black", lty = 6, lwd = 1)
-lines(deltavalueTOTvD3$wildlife ~ deltavalueTOTvD3$year, col = "red", lty = 3, lwd =3)
-lines(deltavalueTOTvD8$wildlife ~ deltavalueTOTvD8$year, col = "purple", lty = 3, lwd =3)
-#lines(deltavalueTOTvA3$wildlife ~ deltavalueTOTvA3$year, col = "black", lty = 3, lwd =2)
+lines(zero, col = "black", lty = 1, lwd = 1)
+eight <- rep(-800000000,110)
+twent <- rep(-1250000000,110)
+
+lines(zero, col = "black", lty = 1, lwd = 1)
+#lines(eight, col = "black", lty = 3, lwd = 1)
+#lines(twent, col = "purple", lty = 3, lwd =1)
 #lines(deltavalueTOTvA8$wildlife ~ deltavalueTOTvA8$year, col = "black", lty = 1,lwd =2)
 lines(deltavalueTOTvB3$wildlife ~ deltavalueTOTvB3$year, col = "black", lty = 1, lwd =2)
-lines(deltavalueTOTvB8$wildlife ~ deltavalueTOTvB8$year, col = "purple", lty = 1, lwd =2)
-lines(deltavalueTOTvC3$wildlife ~ deltavalueTOTvC3$year, col = "dark grey", lty = 5, lwd =2)
+lines(deltavalueTOTvB8$wildlife ~ deltavalueTOTvB8$year, col = "black", lty = 5, lwd =2)
+lines(deltavalueTOTvC3$wildlife ~ deltavalueTOTvC3$year, col = "purple", lty = 1, lwd =2)
 lines(deltavalueTOTvC8$wildlife ~ deltavalueTOTvC8$year, col = "purple", lty = 5, lwd =2)
 
-legend("topright", legend = c("Business as Usual", "Business as Usual w/ Wolf Mgmt", "Full Restoration"), 
-       col = c( "black", "red", "dark grey"), 
-       lty = c(1,3,5), lwd = c(2,3,2), cex = 1.25)
-#ALT LEGEND
-legend("topright", legend = c("Wolf Ceiling, 3% discount rate", "Wolf Ceiling, 8% discount rate", "Business as Usual, 3% discount rate", "Business as Usual, 8% discount rate", 
-                                 "Full Restoration, 3% discount rate", "Full Restoration, 8% discount rate"), 
-       col = c("red", "purple", "black", "purple",  "dark grey", "purple"), 
-       lty = c(3,3,1,1,5,5), lwd = c(2,2,2,2,2,2), cex = 1.0)
+legend("topright", legend = c( "Business as Usual, 3% discount rate", "Business as Usual, 8% discount rate",
+                              "Full Restoration, 3% discount rate", "Full Restoration, 8% discount rate"),
+       col = c( "black", "black",  "purple", "purple"),
+       lty = c(1,5,1,5), lwd = c(2,2,2,2,2,2), cex = 1.0)
 
+legend("topright", legend = c("Business as Usual", "Full Restoration"), 
+       col = c( "black", "purple"), 
+       lty = c(1,1,1), lwd = c(2,2,2), cex = 1.4)
+
+
+par(mfcol = c(1,1), bty = "o", xaxs = "i", yaxs = "i")
+plot(deltavalueTOTvD3$wildlife ~ deltavalueTOTvD3$year,
+     xlab="Year",
+     ylab="Net Change in Value (millions CAD)",
+     main = "",
+     cex.main = 1.25,
+     cex.lab = 1.3,
+     cex = .05,
+     col = "white",
+     xlim = c(0,100),
+     xaxs = "i",
+     yaxs = "i",
+     ylim = c(-100000000,200000000),
+     yaxt = "n",
+     cex.axis = 1.2
+)
+axis(side = 2, at=c(50000000, 0, -50000000, -100000000), 
+     cex.axis = 1.1,
+     labels=c("50", "0", "-50", "-100"))
+zero <- rep(0,110)
+lines(zero, col = "black", lty = 1, lwd = 1)
+eight <- rep(-800000000,110)
+twent <- rep(-1250000000,110)
+
+lines(zero, col = "black", lty = 1, lwd = 1)
+#lines(eight, col = "black", lty = 3, lwd = 1)
+#lines(twent, col = "purple", lty = 3, lwd =1)
+lines(deltavalueTOTvD3$wildlife ~ deltavalueTOTvD3$year, col = "red", lty = 1, lwd =2)
+lines(deltavalueTOTvD8$wildlife ~ deltavalueTOTvD8$year, col = "red", lty = 5, lwd =2)
 
 #Dynamics 1980 to 2080
 par(mfcol = c(1,1), bty = "o", xaxs = "i", yaxs = "i")

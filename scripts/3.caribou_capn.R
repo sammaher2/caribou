@@ -31,6 +31,8 @@ degn <- c(10,10,10,10)  #nodes for grids
 #Boundaries for approx space
 lb <- c(1,1,1,1)
 ub <-  c(20000, 2000000, 10000, 800000)
+ 
+#ub <-  c(2000, 2000000, 10000, 800000)
 
 
 cgrids <- chebgrids(degn,lb,ub,rtype='grid') # Chevyshev nodes

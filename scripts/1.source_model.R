@@ -251,7 +251,8 @@ lf_reclaim <-function(xs, ls, parameters) {
   with(as.list(c(parameters)),{
     rec_time<- a+b*xs-c*xs^2
     rec_goal <- rec_time*rec_prop
-    restore<-max(0,rec_goal*ls)
+   #restore<-max(0,rec_goal*ls)
+    restore<-rec_goal*ls
     return(restore*rec_cost)
   })
 }

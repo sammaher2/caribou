@@ -41,7 +41,7 @@ sim.out <- cbind(sim.out, timeline)
 
 
 ###ELI THIS IS WHERE I CHOOSE WHICH DYNAMICS TO APPLY
-startyr <- startyr
+#startyr <- startyr
 #Populations in 2017 (used to simulate current dynamics for capn)
 endC <- sim.out[87,2]
 endP <- sim.out[87,3]
