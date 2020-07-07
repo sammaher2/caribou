@@ -29,7 +29,7 @@ dr <- .03
 source(P("scripts/3.caribou_capn.R"), local = FALSE)
 source(P("scripts/A3_norestoration_3dr.R"), local = FALSE)
 
-#Scenario A8: No restoration, 3% discount rate
+#Scenario A8: No restoration, 8% discount rate
 rec_prop <- 0.0
 source(P("scripts/1.source_model.R"), local = FALSE)
 source(P("scripts/2.caribou_dynamics.R"), local = FALSE)
@@ -71,7 +71,7 @@ source(P("scripts/C8_50restoration_8dr.R"), local = FALSE)
 
 #Scenario D3: 25% restoration, wolf ceiling, 3% discount rate
 rec_prop <- 0.25
-cap <- 1660
+cap <- 1660 #wolf ceiling
 source(P("scripts/1a.source_model_wolfceiling.R"), local = FALSE)
 source(P("scripts/2a.caribou_dynamics_wolfceiling.R"), local = FALSE)
 dr <- .03
@@ -81,7 +81,7 @@ source(P("scripts/D3_wolfceiling_3dr.R"), local = FALSE)
 
 #Scenario D8: 25% restoration, wolf ceiling, 8% discount rate
 rec_prop <- 0.25
-cap <- 1620
+cap <- 1620 #wolf ceiling : do you want these to differ (1620 vs. 1680)
 source(P("scripts/1a.source_model_wolfceiling.R"), local = FALSE)
 source(P("scripts/2a.caribou_dynamics_wolfceiling.R"), local = FALSE)
 dr <- .08
