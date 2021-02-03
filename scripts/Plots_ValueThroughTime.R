@@ -47,7 +47,7 @@ legend("topright", legend = c("Business as Usual", "Full Restoration"),
 dev.off()
 
 
-tiff(P("images/inearfeature_dynamics.tif"), res=600, compression = "lzw", height= 5, width=6, units="in")
+tiff(P("images/linearfeature_dynamics.tif"), res=600, compression = "lzw", height= 5, width=6, units="in")
 #Linear feature dynamics by year
 par(mfcol = c(1,1), bty = "o", xaxs = "i", yaxs = "i")
 plot(sim.outA3$ls ~ sim.outA3$timeline, col="white", 
