@@ -77,11 +77,7 @@ source(P("scripts/D3_wolfceiling_3dr.R"), local = FALSE)
 
 #Scenario D8: 25% restoration, wolf ceiling, 8% discount rate
 rec_prop <- 0.25
-<<<<<<< HEAD
 cap <- 1620  #A different wolf ceiling is required with an 8% discount rate.
-=======
-cap <- 1620 #wolf ceiling : do you want these to differ (1620 vs. 1680)
->>>>>>> 747eff92eee6df4acf3d7d4d4c8d92ee329ed5d9
 source(P("scripts/1a.source_model_wolfceiling.R"), local = FALSE)
 source(P("scripts/2a.caribou_dynamics_wolfceiling.R"), local = FALSE)
 dr <- .08
