@@ -1,18 +1,8 @@
-#All the lines in each plot lay on top of one another. 
-####################Sam's response to that:
-#There are three chunks of code, one for each of the 3 scenarios. 
-#Everytime you run one of the chunks of code, you need to rerun scripts 1,2,and 3, and make the changes in script 1 (the source model) 
-#so that it is a different scenario being modelled. Otherwise, the lines will just plot over each other.
-#For 0% restoration, 25% restoration, and 50% restoration scenarios, all you have to do is change the value in Line 13 of file "1.source_model"
-#Then run scripts 1, 2, and 3 with that new value (and then the chunk of code for that simulation in this script)
-#Don't run this entire script because you'll replace the values from the previous scenario, causing the lines to all plot over each other
-#Sorry, it's not the most elegant coding- please feel free to make this a bit more intuitive!
-
 ####Code for simulating price curves for each stock on same graph
 zero <- rep (0,1500000)
 
 
-#############SCENARIO B3, 0% restoration, 3% discount rate
+#############SCENARIO B3, 25% restoration, 3% discount rate
 
 
 ######Caribou Shadow Price

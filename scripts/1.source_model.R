@@ -1,7 +1,7 @@
 ########################################################################### 
 #Samantha Maher
 #Yale School of Forestry and Environmental Studies 2018
-#contact at sammaher2@comcast.net or maher@ecohealthalliance.org
+#contact at sam.maher@berkeley.edu or maher@ecohealthalliance.org
 #DATA/DYNAMICS
 #This is the source functions and model that are called from the caribou_dynamics caribou_capn scripts
 ###########################################################################
@@ -10,7 +10,7 @@
 #####Parameter values used ecological model
 do <- 144399 #area of alberta, domain of model
 iL<- 277306 #intitial # of linear features, from Gov. Alberta 2017
-rec_prop <- rec_prop
+rec_prop <- rec_prop  # Manually set in "MASTER" model
 #.25 means 25% of existing linear features are actively restored
 #.5 means 50% of linear features are restored actively (the maximum of accessible lfs)
 #0 means no active restoration
@@ -62,10 +62,10 @@ iP <-function(parameters) {
 }
 
 
-## altered carry capacity formula to take account for initial k being adjsuted to ls amount
+## altered carrying capacity formula to take account for initial k being adjusted to ls amount
 kP <- function(ls, parameters){
   with(as.list(c(parameters)),{
-    return((kM*(mM/mD) + kD)+ (kM*(mM/mD) + kD)*g*log(1+ls/do)) #can i use lfs as dynamic here? or put instarting values
+    return((kM*(mM/mD) + kD)+ (kM*(mM/mD) + kD)*g*log(1+ls/do)) 
   })
 }
 
@@ -84,7 +84,7 @@ logP <- function(ys, ls,  parameters){
   })
 }
 
-#####Encounter rate for wolves and caribou using McKinley formula
+#####Encounter rate for wolves and caribou using McKenzie formula
 encount_C <- function(xs, ls, parameters){
   with(as.list(c(parameters)),{
     return((.0743*((xs/do)^1.15) + 0.00274*((xs/do)^1.15)*ls/do)/dom_coef)
@@ -92,7 +92,7 @@ encount_C <- function(xs, ls, parameters){
 }
 
 
-#####Encounter rate for wolves and ungualtes using McKinley formula
+#####Encounter rate for wolves and ungulates using McKenzie formula
 encount_P <- function(ys,ls, parameters){
   with(as.list(c(parameters)),{
     return((.0743*((ys/do)^1.15)*1.05/10 + 0.0*((ys/do)^1.15)*ls/do)/dom_coef)
@@ -114,7 +114,7 @@ attack_P <- function(ys,ls, parameters){
 }
 
 
-#Rate of Growth in in LFs on landscape (assuming new ones are always stealth to start)
+#Rate of Growth in in LFs on landscape (assuming new ones are always "wildlife friendly" to start)
 #####This is arbitrary right now
 investlf <-function(ls, parameters) {
   with(as.list(c(parameters)),{
@@ -192,7 +192,7 @@ dxdydzdlCC <- function(t, state, parms){
 
 households <- 1256190.0 #Harper 2012
 con1 <- 433.868503 #to the power and numerator
-con2 <- 724.208184 # coefficient in denomenator    
+con2 <- 724.208184 # coefficient in denominator    
   sim.parmsW <- c(
       ann = .04, #(annuitizing coefficient)
       ##Value of LFs, Hauer 2010
@@ -218,8 +218,8 @@ con2 <- 724.208184 # coefficient in denomenator
       con1 = 433.868503, #to the power and numerator
       con2 = 724.208184, # coefficient in denomenator
       ##Wolf Control
-      wcull_ratio = 0.0, #ratio of wolves culled in relation to 40% baseline
-      wcull_cost = 35.0, #cost per km^2 to cull 40% of wolves
+      wcull_ratio = 0.0, #ratio of wolves culled in relation to 40% baseline, NOT USED CURRENTLY
+      wcull_cost = 35.0, #cost per km^2 to cull 40% of wolves, NOT USED CURRENTLY
       ##Prey Control
       w_target = .4,
       w_target_base = .4, #proprtion of wolves killed that 35$ cost is based on
@@ -238,7 +238,7 @@ con2 <- 724.208184 # coefficient in denomenator
 
 ######Investment in Linear Features (Set to zero)
 #This is 0 right now because we are assuming cost of seismic 
-#is in inclued in lf_value which is netted out
+#is in included in lf_value which is netted out
 lf_invest <-function(ls, parameters) {
   with(as.list(c(parameters)),{
     return(0) 

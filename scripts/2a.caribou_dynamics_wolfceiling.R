@@ -1,8 +1,12 @@
-#Prints population levels and amound of linear features
+###########################################################################
+#Samantha Maher
+#Yale School of Forestry and Environmental Studies 2018
+###########################################################################
+#Caribou/wolf/ungulate/linear features dynamics systems model
+#This is the mode that simulates and plots the natural stock level over the next 1000 years
+#It uses the 1.source_model.R file as the the source for all values and functions
+###########################################################################
 
-######################################################################################
-# {capn} Woodland Caribou
-# Dat 4/26/2018
 ######################################################################################
 #install.packages("capn") #only need to run if you have not already installed capn
 #install.packages("ggplot2") #only need to run if you have not already installed ggplot
@@ -10,17 +14,16 @@
 library(capn) #https://cran.r-project.org/web/packages/capn/capn.pdf 
 library(ggplot2)
 library(repmis) #https://cran.r-project.org/web/packages/repmis/index.html 
-library(R.oo) #this was somehow not installed as part of repmis and had to be added manually
+library(R.oo) 
 library(deSolve)
 
 library(rprojroot)
 
 #set working directory
 P <- rprojroot::find_rstudio_root_file
-#source(P("scripts/1a.source_model_wolfceiling.R"), local = FALSE)
+
+
 #Time Simulation
-
-
 tseqw <- seq(0,1000,by = 1)
 startw <- c(xs = 2300, ys = 1000000.0, zs = 2500, ls = iL)
 oderesw <- ode(y = startw, times = tseqw, func = dxdydzdlCC, parms = sim.parmsE)
@@ -34,10 +37,7 @@ endCw <- sim.outw[1,2]
 endPw <- sim.outw[1,3]
 endWw <- sim.outw[1,4]
 endLw <- sim.outw[1,5]
-endCw
-endPw
-endWw
-endLw
+
 #Dynamics 1980 to 2080
 par(mfcol = c(1,1), bty = "o", xaxs = "i", yaxs = "i")
 plot(sim.outw$xs ~ sim.outw$time,

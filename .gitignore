@@ -3,3 +3,8 @@
 .Rbuildignore
 .RData
 .Ruserdata
+images/old
+/*.tiff/
+scripts/old
+scripts/old_files
+*tiff
